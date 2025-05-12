@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Clock</title>
+
+    <style>
+
+        *{
+            margin : 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            height : 100vh;
+            width : 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock{
+            height : 300px;
+            width : 300px;
+            border-radius: 50%;
+            background-image: url(./clock.jpg);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .base{
+            height : 14px;
+            width : 14px;
+            border-radius: 50%;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+        }
+
+        .hour_pin{
+            height : 70px;
+            width : 7px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+        }
+        .min_pin{
+            height : 100px;
+            width : 5px;
+            background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+        }
+        .sec_pin{
+            height : 120px;
+            width : 3px;
+            background-color: red;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+        }
+       
+    </style>
+
+  </head>
+  <body>
+
+    <section>
+        <div class = "clock">
+            <div class = "base" id = "hr_base">
+                <div class = "hour_pin"></div>
+            </div>
+            <div class = "base" id = "min_base">
+                <div class = "min_pin"></div>
+            </div>
+            <div class = "base" id = "sec_base">
+                <div class = "sec_pin"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+      
+        let hour = document.querySelector('#hr_base')
+        let minute = document.querySelector('#min_base')
+        let second = document.querySelector('#sec_base')
+
+        function myClock () {
+            let date = new Date()
+
+            let hr = date.getHours()
+            let min = date.getMinutes()
+            let sec = date.getSeconds()
+
+            let hr_rotate = 30 * hr + min / 2
+            let min_rotate = 6 * min
+            let sec_rotate = 6 * sec
+
+            hour.style.transform = `rotate(${hr_rotate}deg)`
+            minute.style.transform = `rotate(${min_rotate}deg)`
+            second.style.transform = `rotate(${sec_rotate}deg)`
+
+            setInterval(() => {
+                myClock()
+            },1000)
+
+        }
+
+        myClock()
+
+    </script>
+  </body>
+</html>
